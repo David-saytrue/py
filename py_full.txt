@@ -1,0 +1,284 @@
+✅ 1. მარტივი Tkinter პროგრამა ღილაკით (2 ქულა)
+დავალება: ფანჯარას დაარქვით "Python and MySQL" და დაამატეთ ღილაკი "Click Me!", რომელიც კონსოლში გამოიტანს "Button Clicked!".
+
+python
+Copy
+Edit
+import tkinter as tk
+
+def handle_button_click():
+    print("Button Clicked!")
+
+root = tk.Tk()
+root.title("Python and MySQL")
+
+button = tk.Button(root, text="Click Me!", command=handle_button_click)
+button.pack()
+
+root.mainloop()
+✅ 2. ჩამოთვალეთ Tkinter-ის ვიჯეტები და მათი როლი GUI-ში (1 ქულა)
+პასუხი:
+Tkinter-ის ვიჯეტებია:
+
+Label — ტექსტის გამოტანა
+
+Entry — ტექსტის შეყვანა
+
+Button — ღილაკი
+
+Text, Checkbutton, Radiobutton, Listbox, Canvas და სხვ.
+ეს ვიჯეტები ქმნიან მომხმარებლის ინტერფეისს და უზრუნველყოფენ მის ფუნქციონალს.
+
+✅ 3. რა ნაბიჯებია საჭირო MySQL-თან კავშირის დასამყარებლად Python-ით (1 ქულა)
+პასუხი:
+
+pip-ით დააყენეთ მოდული: mysql-connector-python
+
+შექმენით კავშირი connect()
+
+გამოიყენეთ cursor()
+
+შეასრულეთ SQL ოპერაციები: create, read, update, delete
+
+ბოლოს დახურეთ კავშირი close()
+
+✅ 4. ისევ ღილაკიანი Tkinter პროგრამა (გაიმეორა) (2 ქულა)
+კოდი იგივეა, რაც პირველ ამოცანაში.
+
+✅ 5. GUI ორი იარლიყით და ორი ველით Grid Layout-ზე (2 ქულა)
+python
+Copy
+Edit
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Grid Layout Example")
+
+label1 = tk.Label(root, text="პირველი ველი:")
+label1.grid(row=0, column=0, padx=10, pady=10)
+entry1 = tk.Entry(root)
+entry1.grid(row=0, column=1, padx=10, pady=10)
+
+label2 = tk.Label(root, text="მეორე ველი:")
+label2.grid(row=1, column=0, padx=10, pady=10)
+entry2 = tk.Entry(root)
+entry2.grid(row=1, column=1, padx=10, pady=10)
+
+root.mainloop()
+✅ 6. Python + MySQL + Tkinter პროგრამა ბაზასთან კავშირით და ჩანაწერების ჩვენებით (2 ქულა)
+python
+Copy
+Edit
+import tkinter as tk
+import mysql.connector
+
+# MySQL კავშირი
+conn = mysql.connector.connect(
+    host="localhost",
+    user="your_username",      # ჩასვი შენი სახელი
+    password="your_password",  # ჩასვი შენი პაროლი
+    database="py_db"
+)
+cursor = conn.cursor()
+
+# ცხრილის შექმნა
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+)
+""")
+
+# მონაცემის შენახვა
+def save_user():
+    name = name_entry.get()
+    email = email_entry.get()
+    sql = "INSERT INTO users (name, email) VALUES (%s, %s)"
+    val = (name, email)
+    cursor.execute(sql, val)
+    conn.commit()
+    print("User saved!")
+
+# ჩანაწერების ჩვენება
+def show_users():
+    cursor.execute("SELECT * FROM users")
+    for user in cursor.fetchall():
+        print(user)
+
+# GUI ინტერფეისი
+root = tk.Tk()
+root.title("User Form")
+
+tk.Label(root, text="Name:").grid(row=0, column=0, padx=5, pady=5)
+name_entry = tk.Entry(root)
+name_entry.grid(row=0, column=1, padx=5, pady=5)
+
+tk.Label(root, text="Email:").grid(row=1, column=0, padx=5, pady=5)
+email_entry = tk.Entry(root)
+email_entry.grid(row=1, column=1, padx=5, pady=5)
+
+tk.Button(root, text="Save User", command=save_user).grid(row=2, column=0, padx=5, pady=10)
+tk.Button(root, text="Show Users", command=show_users).grid(row=2, column=1, padx=5, pady=10)
+
+root.mainloop()
+
+conn.close()
+რა არის Python-ში ლამბდა ფუნქციების გამოყენების ძირითადი უპირატესობები? რა სიტუაციებში შეიძლება ლამბდა ფუნქცია ნაკლებად შესაფერისი იყოს ჩვეულებრივ ფუნქციასთან შედარებით?
+(2 Points)
+
+უპირატესობა არის ის რომ მოკლე და გასაები ჩანაწერია,შეცდომის დაშვების ალბათობა ნაკლებია,საშუალებას აძლევენ ფუნქციების გამოყენებას როგორც შედეგები სხვა ფუნქციებიდან,ერთი  (expression-ის) დაწერა შეუძლია,ოდნავ რთულდება მისი დებაგირება 
+2.შექმენით სია ხილის დასახელებებით. მეორე ელემენტი შეცვალეთ "Blueberry"-ით და სიის ბოლოს დაამატეთ "Pineapple". ბოლოს დაბეჭდეთ ყველა ელემენტი for ციკლის გამოყენებით.
+(3 Points)
+
+fruits = ["Apple", "Banana", "Orange", "Grape", "Strawberry"]
+fruits[1] = "Blueberry"
+fruits.append("Pineapple")
+
+for fruit in fruits:
+    print(fruit)
+
+3.ახსენით პოლიმორფიზმის კონცეფცია Python-ში და განიხილეთ მისი უპირატესობები ობიექტზე ორიენტირებულ პროგრამირებაში.
+(2 Points)
+
+სხვადასხვა ტიპის ობიქტს შეიძლება ჰქონდეს ერთნაირი მეთოდი და თვისებები,უპირატესობა არის ის რომ კოდი არის მოქნილი კოდის reusability,კოდის შეცვლის გარეშე შეგვიძლია ახალი ტიპის ობიქტების ჩაყრა დამატება
+4.დაწერეთ ლამბდა ფუნქცია ორი რიცხვის ნამრავლის გამოსათვლელად. გამოიყენეთ აღნიშული ლამბდა ფუნქცია ჩვეულებრივ ფუნქციაში, რომელიც იღებს რიცხვთა წყვილების სიას და list comprehension მიდგომის გამოყენებით აბრუნებს მათ ნამრავლებს.
+(3 Points)
+
+def multiply_pairs(pairs):
+    multiply = lambda x, y: x * y
+    return [multiply(x, y) for x, y in pairs]
+
+
+pairs = [(2, 3), (4, 5), (6, 7)]
+results = multiply_pairs(pairs)
+print(results) 
+
+
+5.ახსენით Python-ში ობიექტზე ორიენტირებული პროგრამირების პრინციპები, როგორიცაა ენკაფსულაცია და მემკვიდრეობა. როგორ უწყობს ხელს ეს პრინციპები ეფექტური და შენარჩუნებადი კოდის დაწერას?
+(2 Points)
+
+ინკაფსულაცია მთავარი არსი არის წვდომის კონტროლი და ლოგიკის და ატრიბტების შეკვრა ერთ ობიქტში,მემკვიდრეობა გვაძლევს საშვლ  შვილობითი კლასი შევქმნათ რომელსაც შემდგომ გააჩნია მშობლის თვისებები,ამით ვქმნით უფრო ორგანიზებულ კოდს და ვარიდებთ თავს კოდის დუბლირებაზე 
+6.შექმენით ლექსიკონი (Dictionary) 5 ადამიანის სახელებისა და ასაკის მონაცემებით. დაწერეთ ფუნქცია, რომელიც სიიდან დააბრუნებს ყველაზე უფროსი ადამიანის სახელს. გამოიყენეთ list comprehension მიდგომა, ".items()" და ".values()" მეთოდები.
+(3 Points)
+
+people = {
+    "M": 25,
+    "A": 30,
+    "D": 22,
+    "E": 28,
+    "S": 32
+}
+
+def get_oldest(people):
+    return max(oldest for name, oldest in people.items() if oldest == max(people.values()))
+7.შეადარეთ სიები (Lists), კორტეჟები (Tuples) და სეტები (Sets) Python-ში. რა ძირითადი განსხვავებები არის მათი გამოყენებისას?
+(2 Points)
+
+სიები დალაგებულია გარკვეული თანმიმდევრობით,სიაში შეიძლება იყოს დუბლიკატები,სია შეცვლადია,კორტეჟები დალაგებულია აქაც და შეგვიძ₾ია მივწდეთ ნომრით,ხოლო არის შეუცვლელი,შექმნის მერე ვერ ვცვლით ვშლით ან ვამატებთ,შეიძ₾ება იყოს დუბლიკატები,სეტში არა არის დალაგებული,დუბლიკატები არ დაიშვება 
+8.განსაზღვრეთ ბაზისური კლასი "Animal" ცხოველის "name()" და "sound()" მეთოდებით, რომლებიც დაბეჭდავენ შესაბამის ინფორმაციას. შექმენით ქვეკლასი "Cat", რომელიც მოახდენს "sound" მეთოდის გადატვირთვას და დაბეჭდავს "Meow!"-ს.
+(3 Points)
+
+class Animal:
+    def name(self):
+        print("Animal")
+
+    def sound(self):
+        print("Some sound")
+
+class Cat(Animal):
+    def sound(self):
+        print("Meow!")
+
+
+animal = Animal()
+animal.name()
+animal.sound()
+
+cat = Cat()
+cat.name()
+cat.sound()
+
+
+9.დაწერეთ ფუნქცია "greet", რომელიც მიიღებს ორ არგუმენტს: "name"-ს და "message"-ს. თუ "message" შეტყობინება არ იქნება მოცემული, ფუნქცია ნაგულისხმევად უნდა იყენებდეს "Hello" სიტყვას. გამოიძახეთ ფუნქცია 3-ჯერ.
+(3 Points)
+
+def greet(name, message="Hello"):
+    print(message, name)
+
+greet("Davit")
+greet("Davit", "Hi")
+greet("Mari", "Good morning")
+
+10.დაწერეთ პროგრამა, რომელიც while ციკლს გამოიყენებს 1-დან 50-მდე ყველა რიცხვის დასაბეჭდად, რომლებიც 3-ზე იყოფა.
+(3 Points)
+
+i = 1
+while i <= 50:
+    if i % 3 == 0:
+        print(i)
+    i += 1
+
+✅ 1. Shape და Rectangle კლასები – მემკვიდრეობა (2 ქულა)
+ამოცანა: შექმენით ძირითადი კლასი Shape მეთოდით area(), რომელიც აბრუნებს 0-ს. შემდეგ დაამატეთ შვილი კლასი Rectangle, რომელიც გადაფარავს მეთოდს და გამოითვლის ფართობს.
+
+python
+Copy
+Edit
+class Shape:
+    def area(self):
+        return 0
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+# ობიექტების ტესტირება
+rect1 = Rectangle(10, 20)
+print(rect1.area())  # 200
+
+rect2 = Rectangle(2, 30)
+print(rect2.area())  # 60
+✅ 2. Person კლასი ატრიბუტებით და მეთოდით greet() (2 ქულა)
+ამოცანა: შექმენით Person კლასი ატრიბუტებით firstname, lastname, age. დაამატეთ მეთოდი greet(), რომელიც გამოიტანს ინფორმაციას.
+
+python
+Copy
+Edit
+class Person:
+    def __init__(self, firstname, lastname, age):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.age = age
+
+    def greet(self):
+        print(f"Hello, my name is {self.firstname} {self.lastname} and I am {self.age} years old.")
+
+# ობიექტების შექმნა
+p1 = Person("John", "Doe", 25)
+p2 = Person("Jane", "Doe", 30)
+
+p1.greet()
+p2.greet()
+✅ 3. პოლიმორფიზმი: Dog და Cat კლასები და საერთო მეთოდი speak() (2 ქულა)
+ამოცანა: შექმენით Dog და Cat კლასები speak() მეთოდით. გამოიყენეთ ერთი for ციკლი ორივეს გასამართად.
+
+python
+Copy
+Edit
+class Dog:
+    def speak(self):
+        print("Woof woof!")
+
+class Cat:
+    def speak(self):
+        print("Meow meow!")
+
+animals = [Dog(), Cat()]
+
+for animal in animals:
+    animal.speak()
